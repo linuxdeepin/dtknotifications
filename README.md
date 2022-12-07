@@ -17,7 +17,7 @@ Qt-based development library for notifications on Deepin.
 
 ```bash
 git clone https://github.com/linuxdeepin/dtknotifications.git
-cd dtksystemsettings
+cd dtknotifications
 cmake -B build -DCMAKE_INSTALL_PREFIX=/usr
 cmake --build build
 ```
