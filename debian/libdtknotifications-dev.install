@@ -1,0 +1,7 @@
+usr/include/*
+usr/lib/*/lib*.so
+usr/lib/*/pkgconfig/*
+usr/share/pkgconfig/*
+usr/lib/*/cmake/*/*.cmake
+usr/lib/*/*/mkspecs/modules/*.pri
+usr/share/*/doc/*.qch
