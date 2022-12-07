@@ -4,7 +4,7 @@ export QT_SELECT = qt5
 
 
 %:
-	dh $@ --parallel
+	dh $@
 
 VERSION = $(DEB_VERSION_UPSTREAM)
 PACK_VER = $(shell echo $(VERSION) | awk -F'[+_~-]' '{print $$1}')

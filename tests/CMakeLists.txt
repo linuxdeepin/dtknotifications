@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: LGPL-3.0-or-later
 
-set(BIN_NAME ut-${BIN_NAME})
+set(CMAKE_PROJECT_NAME ut-${CMAKE_PROJECT_NAME})
 
 find_package(GTest REQUIRED)
 file(GLOB_RECURSE INCLUDE_FILES "../include/*.h")
@@ -20,19 +20,19 @@ include_directories(
 
 add_definitions(-DUSE_FAKE_INTERFACE)
 
-add_executable(${BIN_NAME}
+add_executable(${CMAKE_PROJECT_NAME}
     ${INCLUDE_FILES}
     ${SRCS}
     ${TEST_FILES}
 )
 
-target_include_directories(${BIN_NAME} PUBLIC
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::DBus
     ${DtkCore_INCLUDE_DIRS}
 )
 
-target_link_libraries(${BIN_NAME} PRIVATE
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::DBus
     ${DtkCore_LIBRARIES}
@@ -43,11 +43,11 @@ target_link_libraries(${BIN_NAME} PRIVATE
 )
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    target_compile_options(${BIN_NAME} PRIVATE -fprofile-instr-generate -ftest-coverage -fno-access-control)
+    target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -fprofile-instr-generate -ftest-coverage -fno-access-control)
 endif()
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    target_compile_options(${BIN_NAME} PRIVATE -fprofile-arcs -ftest-coverage -fno-access-control)
+    target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -fprofile-arcs -ftest-coverage -fno-access-control)
 endif()
 
 enable_testing()
-add_test(NAME ${BIN_NAME} COMMAND ${BIN_NAME})
+add_test(NAME ${CMAKE_PROJECT_NAME} COMMAND ${CMAKE_PROJECT_NAME})
