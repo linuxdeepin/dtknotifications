@@ -1,8 +1,8 @@
 Source: dtknotifications
 Section: libs
 Priority: optional
-Maintainer: Packages Builder <packages@deepin.com>
-Build-Depends: 
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Build-Depends:
   debhelper-compat (= 12),
   cmake,
   doxygen,
@@ -19,18 +19,16 @@ Architecture: any
 Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Development Tool Kit notifications library
-.
-  libdtknotifications is base library of Deepin Qt/C++ applications,
-  used to develop applications which want to access and control notifications.
-  This package contains the shared libraries.
+ libdtknotifications is base library of Deepin Qt/C++ applications,
+ used to develop applications which want to access and control notifications.
+ This package contains the shared libraries.
 
 Package: libdtknotifications-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: libdtknotifications (= ${binary:Version}), ${misc:Depends}
-Description: Development Tool Kit notifications library
-.
-  libdtknotifications is base library of Deepin Qt/C++ applications,
-  used to develop applications which want to access and control notifications.
-  This package contains the header files and static libraries.
+Description: Development Tool Kit notifications librar
+ libdtknotifications is base library of Deepin Qt/C++ applications,
+ used to develop applications which want to access and control notifications.
+ This package contains the header files and static libraries.

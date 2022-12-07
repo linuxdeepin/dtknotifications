@@ -5,12 +5,11 @@
 cmake_minimum_required(VERSION 3.13)
 # If do't define version number, specify the version number
 set(VERSION "1.0.0" CACHE STRING "define project version")
-set(BIN_NAME dtknotifications)
 
-project(${BIN_NAME}
+project(dtknotifications
     LANGUAGES CXX
-    HOMEPAGE_URL https://github.com/linuxdeepin/dtknotification
-    DESCRIPTION "notification DBus interface binding for Qt"
+    HOMEPAGE_URL https://github.com/linuxdeepin/dtknotifications
+    DESCRIPTION "notification development tool kit"
     VERSION ${VERSION})
 
 # specify install dir
@@ -65,16 +64,15 @@ set(PC_REQ_PRIVATE)
 set(PC_REQ_PUBLIC)
 
 # config pkgconfig file
-configure_file(misc/${BIN_NAME}.pc.in ${BIN_NAME}.pc @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${BIN_NAME}.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+configure_file(misc/${CMAKE_PROJECT_NAME}.pc.in ${CMAKE_PROJECT_NAME}.pc @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 # config cmake file
-configure_file(misc/${BIN_NAME}Config.cmake.in ${BIN_NAME}Config.cmake @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${BIN_NAME}Config.cmake DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${BIN_NAME})
+configure_file(misc/DtkNotificationsConfig.cmake.in DtkNotificationsConfig.cmake @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/DtkNotificationsConfig.cmake DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/DtkNotifications)
 
 # config qmake moudule file
-set(DTK_MODULE ${BIN_NAME})
+set(DTK_MODULE ${CMAKE_PROJECT_NAME})
 set(DTK_DEPS "core dbus")
 set(QMKSPECS_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/qt${QT_VERSION_MAJOR}/mkspecs/modules" CACHE STRING "INSTALL DIR FOR qt pri files")
-configure_file(misc/qt_lib_${BIN_NAME}.pri.in qt_lib_${BIN_NAME}.pri @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qt_lib_${BIN_NAME}.pri DESTINATION "${QMKSPECS_INSTALL_DIR}")
-
+configure_file(misc/qt_lib_${CMAKE_PROJECT_NAME}.pri.in qt_lib_${CMAKE_PROJECT_NAME}.pri @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qt_lib_${CMAKE_PROJECT_NAME}.pri DESTINATION "${QMKSPECS_INSTALL_DIR}")
