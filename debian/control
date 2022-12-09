@@ -14,7 +14,7 @@ Homepage: https://github.com/linuxdeepin/dtknotifications
 Vcs-Browser: https://github.com/linuxdeepin/dtknotifications
 Vcs-Git: https://github.com/linuxdeepin/dtknotifications.git
 
-Package: libdtknotifications
+Package: libdtknotifications1
 Architecture: any
 Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -27,7 +27,7 @@ Package: libdtknotifications-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: libdtknotifications (= ${binary:Version}), ${misc:Depends}
+Depends: libdtknotifications1 (= ${binary:Version}), ${misc:Depends}
 Description: Development Tool Kit notifications librar
  libdtknotifications is base library of Deepin Qt/C++ applications,
  used to develop applications which want to access and control notifications.
