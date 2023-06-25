@@ -4,13 +4,23 @@
 
 cmake_minimum_required(VERSION 3.13)
 # If do't define version number, specify the version number
-set(VERSION "1.0.0" CACHE STRING "define project version")
+set(DTK_VERSION "1.0.0" CACHE STRING "define project version")
 
 project(dtknotifications
     LANGUAGES CXX
     HOMEPAGE_URL https://github.com/linuxdeepin/dtknotifications
     DESCRIPTION "notification development tool kit"
-    VERSION ${VERSION})
+    VERSION ${DTK_VERSION})
+
+set(ENABLE_Qt6 CACHE BOOL OFF)
+if (ENABLE_Qt6)
+    set(DTK_VERSION_MAJOR 6)
+    set(QT_VERSION_MAJOR 6)
+    set(BUILD_EXAMPLES OFF CACHE BOOL "Build examples")
+else()
+    set(QT_VERSION_MAJOR 5)
+    set(BUILD_EXAMPLES ON CACHE BOOL "Build examples")
+endif()
 
 # specify install dir
 include(GNUInstallDirs)
@@ -36,9 +46,8 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer")
 endif ()
 
-find_package(DtkCore REQUIRED)
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui DBus)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core DBus)
+find_package(Dtk${DTK_VERSION_MAJOR}Core REQUIRED)
 
 add_subdirectory(src)
 

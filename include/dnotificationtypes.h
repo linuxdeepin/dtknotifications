@@ -6,6 +6,7 @@
 
 #include <QSharedPointer>
 #include <QDebugStateSaver>
+#include <QVariant>
 #include "dtknotification_global.h"
 
 DNOTIFICATIONS_BEGIN_NAMESPACE
@@ -21,6 +22,36 @@ struct DNotificationData
     QString ctime;
     uint replacesId;
     QString timeout;
+    friend bool operator==(const DNotificationData &lhs, const DNotificationData &rhs)
+    {
+        return lhs.appName == rhs.appName
+                && lhs.id == rhs.id
+                && lhs.appIcon == rhs.appIcon
+                && lhs.summary == rhs.summary
+                && lhs.body == rhs.body
+                && lhs.actions == rhs.actions
+                && lhs.hints == rhs.hints
+                && lhs.ctime == rhs.ctime
+                && lhs.replacesId == rhs.replacesId
+                && lhs.timeout == rhs.timeout;
+    }
+
+    friend bool operator==(const QVariantMap& lhs, const QVariantMap& rhs)
+    {
+        if (lhs.size() != rhs.size()) {
+            return false;
+        }
+
+        for (auto it = lhs.constBegin(); it != lhs.constEnd(); ++it) {
+            auto key = it.key();
+            if (!rhs.contains(key) || lhs[key] != rhs[key]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 };
 typedef QSharedPointer<DNotificationData> DNotificationDataPtr;
 
@@ -55,6 +86,13 @@ struct ServerInformation {
     QString vendor;
     QString version;
     QString spec_version;
+    friend bool operator==(const ServerInformation &lhs, const ServerInformation &rhs)
+    {
+        return lhs.name == rhs.name
+                && lhs.vendor == rhs.vendor
+                && lhs.version == rhs.version
+                && lhs.spec_version == rhs.spec_version;
+    }
 };
 
 QDebug operator<<(QDebug debug, const DNotificationData &nofitication);
